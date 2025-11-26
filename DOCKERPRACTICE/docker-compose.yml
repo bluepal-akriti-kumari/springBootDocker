@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dockerpractice
+      MYSQL_USER: root
+      MYSQL_PASSWORD: akriti
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - springboot-mysql
+
+  springboot:
+    build: .
+    container_name: springboot_container
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/dockerpractice
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: akriti
+    ports:
+      - "8080:8080"
+    networks:
+      - springboot-mysql
+
+networks:
+  springboot-mysql:
+
+volumes:
+  mysql_data:
