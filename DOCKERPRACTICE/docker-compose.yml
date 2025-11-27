@@ -5,10 +5,8 @@ services:
     image: mysql:8
     container_name: mysql_container
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: akriti        # root password
       MYSQL_DATABASE: dockerpractice
-      MYSQL_USER: akriti
-      MYSQL_PASSWORD: akriti
     ports:
       - "3307:3306"
     volumes:
@@ -23,8 +21,8 @@ services:
       - mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/dockerpractice
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: akriti
+      SPRING_DATASOURCE_USERNAME: root      # ROOT USER
+      SPRING_DATASOURCE_PASSWORD: akriti    # ROOT PASSWORD
     ports:
       - "8081:8080"
     networks:
